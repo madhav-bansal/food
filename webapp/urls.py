@@ -20,5 +20,5 @@ urlpatterns = [
     path('logout/',views.Logout,name='logout'),
     path('restaurant/<int:pk>/',views.restuarantMenu,name='menu'),
     path('checkout/',views.checkout,name='checkout'),
-
+    path('myorders/', views.orderpending, name='orderpending'),
 ]

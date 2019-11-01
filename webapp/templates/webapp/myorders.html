@@ -1,0 +1,64 @@
+{% extends 'webapp/base.html' %}
+{% block title %}Order List{% endblock %}
+
+{% block body %}
+
+{% for order in orders %}
+            <div class="container">
+                    <div class="col-md-12 restaurent-title">
+                        <div class="logo-title" style="border: 0;">
+                            <h4>{{order.0}}  </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12 order-form-grid  wow fadeInLeft">
+                        <h5>Order Information</h5>
+                        <span>Items List:</span>
+                        <div>
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                </thead>
+                                {% for x in order.2 %}
+                                    <tr><td>{{x.0}}</td><td>{{x.1}}</td><td>&#x20b9;{{x.2}}</td></tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <h5>delivery location : {{order.6}}</h5>
+                    </div>
+                    <div class="col-md-12 buy"  style="display: inline-block;">
+
+                        <span>Total price: &#x20b9;{{order.3}}</span>
+                        <span  style="display: inline;">Status:</span>
+                         {% if order.5 == 1 %}
+                              <span  style="display: inline;">Placed</span>
+                            {% endif %}
+                           {% if order.5 == 2 %}
+                              <span  style="display: inline;">Aknowledged</span>
+                            {% endif %}
+                           {% if order.5 == 3 %}
+                              <span  style="display: inline;">Completed</span>
+                            {% endif %}
+                           {% if order.5 == 4 %}
+                              <span  style="display: inline;">Dispatched</span>
+                            {% endif %}
+                           {% if order.5 == 5 %}
+                              <span  style="display: inline;">Cancelled</span>
+                            {% endif %}
+                        <input type="hidden" name="orderid" value="{{order.4}}">
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                
+            
+        </div>
+{% endfor %}
+{% endblock %}

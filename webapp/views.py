@@ -212,6 +212,60 @@ def checkout(request):
 		return render(request,'webapp/order.html',context)
 
 
+def orderpending(request):
+	orders = Order.objects.filter(orderedBy=request.user.customer.id).order_by('-timestamp')
+	corders = []
+
+	for order in orders:
+
+		user = User.objects.filter(id=order.r_id.id)
+		user = user[0]
+		corder = []
+
+		corder.append(user.restaurant.rname)
+		corder.append(user.restaurant.info)
+
+		items_list = orderItem.objects.filter(ord_id=order)
+
+		items = []
+		for item in items_list:
+			citem = []
+			citem.append(item.item_id)
+			citem.append(item.quantity)
+			menu = Menu.objects.filter(id=item.item_id.id)
+			citem.append(menu[0].price * item.quantity)
+			menu = 0
+			items.append(citem)
+
+		corder.append(items)
+		corder.append(order.total_amount)
+		corder.append(order.id)
+
+		x = order.status
+		if x == Order.ORDER_STATE_WAITING:
+			continue
+		elif x == Order.ORDER_STATE_PLACED:
+			x = 1
+		elif x == Order.ORDER_STATE_ACKNOWLEDGED:
+			x = 2
+		elif x == Order.ORDER_STATE_COMPLETED:
+			x = 3
+		elif x == Order.ORDER_STATE_DISPATCHED:
+			x = 4
+		elif x == Order.ORDER_STATE_CANCELLED:
+			x = 5
+		else:
+			continue
+
+		corder.append(x)
+		corder.append(order.delivery_addr)
+		corders.append(corder)
+
+	context = {
+		"orders": corders,
+	}
+
+	return render(request, "webapp/myorders.html", context)
 
 
 ####### ------------------- Restaurant Side ------------------- #####

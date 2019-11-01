@@ -50,8 +50,12 @@
             <li class="nav-item">
                 <a class="nav-link text-light" href="{% url 'logout' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>LogOut </strong> </font></a>
             </li>
-            <li class="nav-item">
+
+             <li class="nav-item">
                 <a class="nav-link text-light" href="{% url 'profile' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>My Profile</strong></font></a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link text-light" style="float: left;" href="{% url 'profile' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>MyOrders</strong></font> </a>
             </li>
           {% else %}
             <li class="nav-item">
@@ -64,6 +68,9 @@
         </ul>
     </div>
 </div>
+        <a class="nav-link text-light" style="float: left;" href="{% url 'orderpending' %}"><img  src="/static/webapp/images/bur.jpg" style="height: 90px;width: 170px;" alt="Home" class="rounded-circle img-responsive">
+</a>
+
 </nav>
 
 {% block body %}
