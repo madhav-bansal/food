@@ -2,6 +2,13 @@
 {% block title %}Order List{% endblock %}
 
 {% block body %}
+{% if not orders %}
+  <div class="col-md-12 restaurent-title">
+                        <div class="logo-title" style="border: 0;">
+                            <h4>No orders </h4>
+                        </div>
+                    </div>
+{% else %}
 
 {% for order in orders %}
             <div class="container">
@@ -32,9 +39,10 @@
                             </table>
                         </div>
                         <h5>delivery location : {{order.6}}</h5>
+                        <h5>ordered on: {{order.7}}</h5>
                     </div>
                     <div class="col-md-12 buy"  style="display: inline-block;">
-
+                        <div style="float:left;">
                         <span>Total price: &#x20b9;{{order.3}}</span>
                         <span  style="display: inline;">Status:</span>
                          {% if order.5 == 1 %}
@@ -53,12 +61,19 @@
                               <span  style="display: inline;">Cancelled</span>
                             {% endif %}
                         <input type="hidden" name="orderid" value="{{order.4}}">
+                        </div>
+                        <br>
+                        {%if order.5 == 1 or order.5 == 2 %}
+
+                           <a href="{% url 'remove' order.4 %}" ><button type="button" class="btn btn-success btn-lg pull-right" style="  background-color:red;width:100px;font-size: 20px;" > Cancel</button></a>
 
 
+                        {%endif%}
                     </div>
                     <div class="clearfix"></div>
                 
             
         </div>
 {% endfor %}
+{% endif%}
 {% endblock %}

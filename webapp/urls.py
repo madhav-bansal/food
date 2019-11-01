@@ -21,4 +21,6 @@ urlpatterns = [
     path('restaurant/<int:pk>/',views.restuarantMenu,name='menu'),
     path('checkout/',views.checkout,name='checkout'),
     path('myorders/', views.orderpending, name='orderpending'),
+    path('restaurant/remove/<int:pk>', views.remove, name='remove'),
+
 ]

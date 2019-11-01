@@ -2,11 +2,20 @@
 {% block title %}Order List{% endblock %}
 
 {% block body %}
+{% if not orders %}
+  <div class="col-md-12 restaurent-title">
+                        <div class="logo-title" style="border: 0;">
+                            <h4>No orders </h4>
+                        </div>
+                    </div>
+{% else %}
+
 {% for order in orders %}
             <div class="container">
-                    <div class="col-md-12 restaurent-title">
+                    <div class="col-md-12 restaurent-title">  <h1 style="float:right; "><a href="{% url 'remove' order.4  %}">&times;</a></h1>
                         <div class="logo-title" style="border: 0;">
                             <h4>{{order.0}} - {{order.1}} - {{order.6}}</h4>
+
                         </div>
                     </div>
                     <div class="col-md-12 order-form-grid  wow fadeInLeft">
@@ -81,4 +90,5 @@
             
         </div>
 {% endfor %}
+{% endif %}
 {% endblock %}

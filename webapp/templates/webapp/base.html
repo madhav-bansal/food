@@ -36,7 +36,7 @@
             
         </ul>
     </div>
-    <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+         <div class="mx-auto my-2 order-0 order-md-1 position-relative">
         <a class="mx-auto" href="#">
             <img  src="/static/webapp/images/logo.png" style="height: 90px;width: 170px;" alt="Home" class="rounded-circle img-responsive">
         </a>
@@ -44,7 +44,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+         <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
         <ul class="navbar-nav mr-auto text-center">
           {% if request.user.is_authenticated and request.user.is_customer%}
             <li class="nav-item">
@@ -54,9 +54,7 @@
              <li class="nav-item">
                 <a class="nav-link text-light" href="{% url 'profile' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>My Profile</strong></font></a>
             </li>
-             <li class="nav-item">
-                <a class="nav-link text-light" style="float: left;" href="{% url 'profile' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>MyOrders</strong></font> </a>
-            </li>
+
           {% else %}
             <li class="nav-item">
                 <a class="nav-link text-light" href="{% url 'login' %}"><font size="3">&nbsp;<span aria-hidden="true"></span> <strong>LogIn</strong></font></a>
@@ -67,11 +65,11 @@
             {% endif %}
         </ul>
     </div>
-</div>
-        <a class="nav-link text-light" style="float: left;" href="{% url 'orderpending' %}"><img  src="/static/webapp/images/bur.jpg" style="height: 90px;width: 170px;" alt="Home" class="rounded-circle img-responsive">
-</a>
+       </div>
+        <a class="nav-link text-light"  href="{% url 'orderpending' %}"><img  src="/static/webapp/images/bur.jpg" style="height: 90px;width: 170px;" alt="Home" class="rounded-circle img-responsive">
+        </a>
 
-</nav>
+  </nav>
 
 {% block body %}
 {% endblock %}
@@ -82,10 +80,9 @@
 
 <div class="footer">
     <div class="container-fluid">
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        <a href="#"> MohdAsif</a>
-      </div>
-    
+
+
+
   </div>
 </div>
 

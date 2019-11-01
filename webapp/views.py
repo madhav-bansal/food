@@ -211,7 +211,7 @@ def checkout(request):
 		}	
 		return render(request,'webapp/order.html',context)
 
-
+@login_required(login_url='/login/user/')
 def orderpending(request):
 	orders = Order.objects.filter(orderedBy=request.user.customer.id).order_by('-timestamp')
 	corders = []
@@ -222,7 +222,7 @@ def orderpending(request):
 		user = user[0]
 		corder = []
 
-		corder.append(user.restaurant.rname)
+		corder.append(order.r_id.rname)
 		corder.append(user.restaurant.info)
 
 		items_list = orderItem.objects.filter(ord_id=order)
@@ -259,6 +259,7 @@ def orderpending(request):
 
 		corder.append(x)
 		corder.append(order.delivery_addr)
+		corder.append(order.timestamp);
 		corders.append(corder)
 
 	context = {
@@ -482,6 +483,12 @@ def orderlist(request):
 
 	return render(request,"webapp/order-list.html",context)
 	
-
+def remove(request,pk=None):
+	order= Order.objects.filter(id=pk)
+	order.delete();
+	if(request.user.is_customer):
+		return redirect('orderpending')
+	else:
+		return redirect('orderlist')
 
 
