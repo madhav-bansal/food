@@ -3,11 +3,12 @@
 
 {% block body %}
 {% if not orders %}
-  <div class="col-md-12 restaurent-title">
+  <marquee scrollamount="10"><div class="col-md-12 restaurent-title">
                         <div class="logo-title" style="border: 0;">
-                            <h4>No orders </h4>
+                    <h4>No orders </h4></marquee>
                         </div>
                     </div>
+</marquee>
 {% else %}
 
 {% for order in orders %}
