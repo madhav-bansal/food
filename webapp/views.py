@@ -40,18 +40,6 @@ def Logout(request):
 
 #### -----------------Customer Side---------------------- ######
 
-# Creating Customer Account
-# def Becomecustomer(request):
-# 	if(request.user.is_authenticated):
-# 		if request.user.is_active:
-# 			return redirect("ccreate")
-# 	else:
-# 		form = CustomerSignUpForm(request.POST or None)
-# 		context = {
-# 			'form': form
-# 		}
-# 		return render(request, 'webapp/signup.html', context)
-
 
 def customerRegister(request):
 	form =CustomerSignUpForm(request.POST or None)
@@ -165,9 +153,9 @@ def restuarantMenu(request,pk=None):
 
 @login_required(login_url='/login/user/')
 def checkout(request):
-	if(request.user.is_customer==False):
-		if (request.user.is_customer == False):
-			return render(request, 'webapp/login.html', {'error_message': 'Your account not registered as Customer'})
+
+	if (request.user.is_customer == False):
+		return render(request, 'webapp/login.html', {'error_message': 'Your account not registered as Customer'})
 
 	if request.POST:
 		addr  = request.POST['address']
@@ -213,19 +201,20 @@ def checkout(request):
 
 @login_required(login_url='/login/user/')
 def orderpending(request):
-	orders = Order.objects.filter(orderedBy=request.user.customer.id).order_by('-timestamp')
+	orders = Order.objects.filter(orderedBy= request.user.id).order_by('-timestamp')
+
 	corders = []
 
 	for order in orders:
 
-		user = User.objects.filter(id=order.r_id.id)
+		user = Restaurant.objects.filter(	rname =order.r_id)
 		user = user[0]
 		corder = []
 
 		corder.append(order.r_id.rname)
-		corder.append(user.restaurant.info)
+		corder.append(user.info)
 
-		items_list = orderItem.objects.filter(ord_id=order)
+		items_list = orderItem.objects.filter(ord_id=order.id)
 
 		items = []
 		for item in items_list:
@@ -259,12 +248,13 @@ def orderpending(request):
 
 		corder.append(x)
 		corder.append(order.delivery_addr)
-		corder.append(order.timestamp);
+		corder.append(order.timestamp)
 		corders.append(corder)
 
 	context = {
 		"orders": corders,
 	}
+
 
 	return render(request, "webapp/myorders.html", context)
 
@@ -429,7 +419,7 @@ def orderlist(request):
 
 	orders = Order.objects.filter(r_id=request.user.restaurant.id).order_by('-timestamp')
 	corders = []
-
+	print(request.user.restaurant.id)
 	for order in orders:
 
 		user = User.objects.filter(id=order.orderedBy.id)

@@ -4,8 +4,9 @@
     <list default="true" id="6580d4fe-10fb-4145-ac87-a85ea72b05ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/foodapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/templates/webapp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/webapp/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/templates/webapp/myorders.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/webapp/myorders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +30,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../restaurant/src" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/webapp/static/webapp/images" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
